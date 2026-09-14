@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -15,9 +16,10 @@ body {
   font-feature-settings: "ss01" 1;
 }
 
+/* Typography Classes */
 .text-display-xl {
   font-family: 'Instrument Serif', serif;
-  font-size: 96px;
+  font-size: clamp(72px, 10vw, 96px);
   line-height: 1.1;
   letter-spacing: -0.02em;
   font-weight: 300;
@@ -25,7 +27,7 @@ body {
 
 .text-display-lg {
   font-family: 'Instrument Serif', serif;
-  font-size: 72px;
+  font-size: clamp(56px, 8vw, 72px);
   line-height: 1.1;
   letter-spacing: -0.02em;
   font-weight: 300;
@@ -111,6 +113,7 @@ body {
   color: #7A7770;
 }
 
+/* Link styles */
 a {
   transition: color 0.3s ease;
 }
@@ -119,11 +122,20 @@ a:hover {
   color: #1A3C6E;
 }
 
+/* Focus states for accessibility */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #1A3C6E;
+  outline-offset: 2px;
+}
+
+/* Selection */
 ::selection {
   background-color: #1A3C6E;
   color: #FFFFFF;
 }
 
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -140,4 +152,16 @@ a:hover {
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: #B8B5AC;
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
